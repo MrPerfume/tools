@@ -100,6 +100,47 @@ $mailer->From = $mailer->Username; // 发件人邮箱
 $mailer->FromName = Yii::app()->params['emailFormName']; // 发件人姓名
 $mailer->AddReplyTo ( $mailer->Username );
 $mailer->CharSet = 'UTF-8';
+//邮件配置
+$mailer->SetLanguage('zh_cn');
+$mailer->Host = Yii::app()->params['emailHost']; //发送邮件服务器
+$mailer->Port = Yii::app()->params['emailPort']; //邮件端口
+$mailer->Timeout = Yii::app()->params['emailTimeout'];//邮件发送超时时间
+$mailer->ContentType = 'text/html';//设置html格式
+$mailer->SMTPAuth = true;
+$mailer->Username = Yii::app()->params['emailUserName'];
+$mailer->Password = Yii::app()->params['emailPassword'];
+$mailer->IsSMTP ();
+$mailer->From = $mailer->Username; // 发件人邮箱
+$mailer->FromName = Yii::app()->params['emailFormName']; // 发件人姓名
+$mailer->AddReplyTo ( $mailer->Username );
+$mailer->CharSet = 'UTF-8';
+
+// 添加邮件日志
+$modelMail = new MailLog ();
+$modelMail->accept = $toemail;
+$modelMail->subject = $subject;
+$modelMail->message = $message;
+$modelMail->send_status = 'waiting';
+$modelMail->save ();
+// 发送邮件
+$mailer->AddAddress ( $toemail );
+$mailer->Subject = $subject;
+$mailer->Body = $message;
+
+if ($mailer->Send () === true) {
+$modelMail->times = $modelMail->times + 1;
+$modelMail->send_status = 'success';
+$modelMail->save ();
+return true;
+} else {
+$error = $mailer->ErrorInfo;
+$modelMail->times = $modelMail->times + 1;
+$modelMail->send_status = 'failed';
+$modelMail->error = $error;
+$modelMail->save ();
+return false;
+}
+}
 
 
 
