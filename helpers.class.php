@@ -15,6 +15,14 @@ return 'Linux';
 return 'Windows';
 }
 }
+/**
+* 当前微妙数
+* @return number
+*/
+public static function microtime_float() {
+list ( $usec, $sec ) = explode ( " ", microtime () );
+return (( float ) $usec + ( float ) $sec);
+}
 
 
 
