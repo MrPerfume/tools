@@ -76,7 +76,31 @@ closedir ( $handle );
 }
 return $ret;
 }
- 
+/**
+* 邮件发送
+* @param string $toemail
+* @param string $subject
+* @param string $message
+* @return boolean
+*/
+public static function sendMail($toemail = '', $subject = '', $message = '') {
+$mailer = Yii::createComponent ( 'application.extensions.mailer.EMailer' );
+
+//邮件配置
+$mailer->SetLanguage('zh_cn');
+$mailer->Host = Yii::app()->params['emailHost']; //发送邮件服务器
+$mailer->Port = Yii::app()->params['emailPort']; //邮件端口
+$mailer->Timeout = Yii::app()->params['emailTimeout'];//邮件发送超时时间
+$mailer->ContentType = 'text/html';//设置html格式
+$mailer->SMTPAuth = true;
+$mailer->Username = Yii::app()->params['emailUserName'];
+$mailer->Password = Yii::app()->params['emailPassword'];
+$mailer->IsSMTP ();
+$mailer->From = $mailer->Username; // 发件人邮箱
+$mailer->FromName = Yii::app()->params['emailFormName']; // 发件人姓名
+$mailer->AddReplyTo ( $mailer->Username );
+$mailer->CharSet = 'UTF-8';
+
 
 
 
