@@ -215,6 +215,20 @@ return $string;
 else
 return @iconv ( $encoding, $outEncoding, $string );
 }
+/**
+* 返回二维数组中某个键名的所有值
+* @param input $array
+* @param string $key
+* @return array
+*/
+public static function array_key_values($array =array(), $key='')
+{
+$ret = array();
+foreach((array)$array as $k=>$v){
+$ret[$k] = $v[$key];
+}
+return $ret;
+}
 
 
 
