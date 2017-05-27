@@ -268,6 +268,30 @@ $pos ++;
 return round( $size, $dec ) . " " . $a[$pos];
 }
 
+/**
+* 下拉框，单选按钮 自动选择
+*
+* @param $string 输入字符
+* @param $param  条件
+* @param $type   类型
+* selected checked
+* @return string
+*/
+static public function selected( $string, $param = 1, $type = 'select' ) {
+
+$true = false;
+if ( is_array( $param ) ) {
+$true = in_array( $string, $param );
+}elseif ( $string == $param ) {
+$true = true;
+}
+$return='';
+if ( $true )
+$return = $type == 'select' ? 'selected="selected"' : 'checked="checked"';
+
+echo $return;
+}
+
 
 
 
