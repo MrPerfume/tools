@@ -399,6 +399,33 @@ break;
 }
 return $access;
 }
+/**
+* 取得输入目录所包含的所有目录和文件
+* 以关联数组形式返回
+* author: flynetcn
+*/
+static public function deepScanDir($dir)
+{
+$fileArr = array();
+$dirArr = array();
+$dir = rtrim($dir, '//');
+if(is_dir($dir)){
+$dirHandle = opendir($dir);
+while(false !== ($fileName = readdir($dirHandle))){
+$subFile = $dir . DIRECTORY_SEPARATOR . $fileName;
+if(is_file($subFile)){
+$fileArr[] = $subFile;
+} elseif (is_dir($subFile) && str_replace('.', '', $fileName)!=''){
+$dirArr[] = $subFile;
+$arr = self::deepScanDir($subFile);
+$dirArr = array_merge($dirArr, $arr['dir']);
+$fileArr = array_merge($fileArr, $arr['file']);
+}
+}
+closedir($dirHandle);
+}
+return array('dir'=>$dirArr, 'file'=>$fileArr);
+}
 
 
 
