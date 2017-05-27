@@ -255,6 +255,18 @@ $writeable = 0;
 
 return $writeable;
 }
+/**
+* 格式化单位
+*/
+static public function byteFormat( $size, $dec = 2 ) {
+$a = array ( "B" , "KB" , "MB" , "GB" , "TB" , "PB" );
+$pos = 0;
+while ( $size >= 1024 ) {
+$size /= 1024;
+$pos ++;
+}
+return round( $size, $dec ) . " " . $a[$pos];
+}
 
 
 
