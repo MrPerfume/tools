@@ -426,6 +426,32 @@ closedir($dirHandle);
 }
 return array('dir'=>$dirArr, 'file'=>$fileArr);
 }
+/**
+* 取得输入目录所包含的所有文件
+* 以数组形式返回
+* author: flynetcn
+*/
+static public function get_dir_files($dir)
+{
+if (is_file($dir)) {
+return array($dir);
+}
+$files = array();
+if (is_dir($dir) && ($dir_p = opendir($dir))) {
+$ds = DIRECTORY_SEPARATOR;
+while (($filename = readdir($dir_p)) !== false) {
+if ($filename=='.' || $filename=='..') { continue; }
+$filetype = filetype($dir.$ds.$filename);
+if ($filetype == 'dir') {
+$files = array_merge($files, self::get_dir_files($dir.$ds.$filename));
+} elseif ($filetype == 'file') {
+$files[] = $dir.$ds.$filename;
+}
+}
+closedir($dir_p);
+}
+return $files;
+}
 
 
 
