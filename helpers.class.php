@@ -496,6 +496,15 @@ static public function alertBack($_info) {
 echo "<script type='text/javascript'>alert('$_info');history.back();</script>";
 exit();
 }
+/**
+* 页面跳转
+* @param string $url
+* @return js
+*/
+static public function headerUrl($url) {
+echo "<script type='text/javascript'>location.href='{$url}';</script>";
+exit();
+}
 
 
 
