@@ -487,6 +487,15 @@ static public function alertLocation($_info, $_url) {
 echo "<script type='text/javascript'>alert('$_info');location.href='$_url';</script>";
 exit();
 }
+/**
+* js 弹窗返回
+* @param string $_info
+* @return js
+*/
+static public function alertBack($_info) {
+echo "<script type='text/javascript'>alert('$_info');history.back();</script>";
+exit();
+}
 
 
 
