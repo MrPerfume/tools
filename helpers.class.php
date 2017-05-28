@@ -477,6 +477,16 @@ return true;
 return false;
 }
 }
+/**
+* js 弹窗并且跳转
+* @param string $_info
+* @param string $_url
+* @return js
+*/
+static public function alertLocation($_info, $_url) {
+echo "<script type='text/javascript'>alert('$_info');location.href='$_url';</script>";
+exit();
+}
 
 
 
