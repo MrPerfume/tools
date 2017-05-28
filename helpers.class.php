@@ -505,6 +505,15 @@ static public function headerUrl($url) {
 echo "<script type='text/javascript'>location.href='{$url}';</script>";
 exit();
 }
+/**
+* 弹窗关闭
+* @param string $_info
+* @return js
+*/
+static public function alertClose($_info) {
+echo "<script type='text/javascript'>alert('$_info');close();</script>";
+exit();
+}
 
 
 
