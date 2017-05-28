@@ -514,6 +514,15 @@ static public function alertClose($_info) {
 echo "<script type='text/javascript'>alert('$_info');close();</script>";
 exit();
 }
+/**
+* 弹窗
+* @param string $_info
+* @return js
+*/
+static public function alert($_info) {
+echo "<script type='text/javascript'>alert('$_info');</script>";
+exit();
+}
 
 
 
