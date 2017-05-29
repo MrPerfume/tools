@@ -565,6 +565,14 @@ static public function mysqlString($_data) {
 $_data = trim($_data);
 return !GPC ? addcslashes($_data) : $_data;
 }
+**
+* 清理session
+*/
+static public function unSession() {
+if (session_start()) {
+session_destroy();
+}
+}
 
 
 
