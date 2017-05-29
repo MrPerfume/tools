@@ -523,6 +523,18 @@ static public function alert($_info) {
 echo "<script type='text/javascript'>alert('$_info');</script>";
 exit();
 }
+/**
+* 系统基本参数上传图片专用
+* @param string $_path
+* @return null
+*/
+static public function sysUploadImg($_path) {
+echo '<script type="text/javascript">document.getElementById("logo").value="'.$_path.'";</script>';
+echo '<script type="text/javascript">document.getElementById("pic").src="'.$_path.'";</script>';
+echo '<script type="text/javascript">$("#loginpop1").hide();</script>';
+echo '<script type="text/javascript">$("#bgloginpop2").hide();</script>';
+}
+ 
 
 
 
