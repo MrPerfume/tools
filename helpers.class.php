@@ -585,6 +585,17 @@ self::alertBack('警告：' .$name . '不能为空！');
 }
 }
 
+/**
+* 验证是否相同
+* @param string $str1
+* @param string $str2
+* @param string $alert
+* @return JS
+*/
+static function validateAll($str1, $str2, $alert) {
+if ($str1 != $str2) self::alertBack('警告：' .$alert);
+}
+
 
 
 
