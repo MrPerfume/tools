@@ -573,6 +573,17 @@ if (session_start()) {
 session_destroy();
 }
 }
+/**
+* 验证是否为空
+* @param string $str
+* @param string $name
+* @return bool (true or false)
+*/
+static function validateEmpty($str, $name) {
+if (empty($str)) {
+self::alertBack('警告：' .$name . '不能为空！');
+}
+}
 
 
 
