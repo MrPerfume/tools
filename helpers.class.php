@@ -534,7 +534,27 @@ echo '<script type="text/javascript">document.getElementById("pic").src="'.$_pat
 echo '<script type="text/javascript">$("#loginpop1").hide();</script>';
 echo '<script type="text/javascript">$("#bgloginpop2").hide();</script>';
 }
- 
+
+
+/**
+* html过滤
+* @param array|object $_date
+* @return string
+*/
+static public function htmlString($_date) {
+if (is_array($_date)) {
+foreach ($_date as $_key=>$_value) {
+$_string[$_key] = self::htmlString($_value);  //递归
+}
+} elseif (is_object($_date)) {
+foreach ($_date as $_key=>$_value) {
+$_string->$_key = self::htmlString($_value);  //递归
+}
+} else {
+$_string = htmlspecialchars($_date);
+}
+return $_string;
+}
 
 
 
