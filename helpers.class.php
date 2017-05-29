@@ -596,6 +596,15 @@ static function validateAll($str1, $str2, $alert) {
 if ($str1 != $str2) self::alertBack('警告：' .$alert);
 }
 
+/**
+* 验证ID
+* @param Number $id
+* @return JS
+*/
+static function validateId($id) {
+if (empty($id) || !is_numeric($id)) self::alertBack('警告：参数错误！');
+}
+
 
 
 
