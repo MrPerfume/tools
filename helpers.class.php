@@ -556,6 +556,16 @@ $_string = htmlspecialchars($_date);
 return $_string;
 }
 
+/**
+* 数据库输入过滤
+* @param string $_data
+* @return string
+*/
+static public function mysqlString($_data) {
+$_data = trim($_data);
+return !GPC ? addcslashes($_data) : $_data;
+}
+
 
 
 
