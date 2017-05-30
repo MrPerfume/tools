@@ -665,6 +665,22 @@ preg_match('/[\d\.]{7,15}/', $realip, $onlineip);
 $realip = !empty($onlineip[0]) ? $onlineip[0] : '0.0.0.0';
 return $realip;
 }
+/**
+* 加载 Smarty 模板
+* @param string $html
+* @return null;
+*/
+static public function display() {
+global $tpl;$html = null;
+$htmlArr = explode('/', $_SERVER[SCRIPT_NAME]);
+$html = str_ireplace('.php', '.html', $htmlArr[count($htmlArr)-1]);
+$dir = dirname($_SERVER[SCRIPT_NAME]);
+$firstStr = substr($dir, 0, 1);
+$endStr = substr($dir, strlen($dir)-1, 1);
+if ($firstStr == '/' || $firstStr == '\\') $dir = substr($dir, 1);
+if ($endStr != '/' || $endStr != '\\') $dir = $dir . '/';
+$tpl->display($dir.$html);
+}
 
 
 
