@@ -605,6 +605,18 @@ static function validateId($id) {
 if (empty($id) || !is_numeric($id)) self::alertBack('警告：参数错误！');
 }
 
+/**
+* 格式化字符串
+* @param string $str
+* @return string
+*/
+static public function formatStr($str) {
+$arr = array(' ', ' ', '&', '@', '#', '%',  '\'', '"', '\\', '/', '.', ',', '$', '^', '*', '(', ')', '[', ']', '{', '}', '|', '~', '`', '?', '!', ';', ':', '-', '_', '+', '=');
+foreach ($arr as $v) {
+$str = str_replace($v, '', $str);
+}
+return $str;
+}
 
 
 
