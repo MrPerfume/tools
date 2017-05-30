@@ -681,6 +681,15 @@ if ($firstStr == '/' || $firstStr == '\\') $dir = substr($dir, 1);
 if ($endStr != '/' || $endStr != '\\') $dir = $dir . '/';
 $tpl->display($dir.$html);
 }
+/**
+* 创建目录
+* @param string $dir
+*/
+static public function createDir($dir) {
+if (!is_dir($dir)) {
+mkdir($dir, 0777);
+}
+}
 
 
 
