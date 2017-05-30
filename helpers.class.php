@@ -690,6 +690,13 @@ if (!is_dir($dir)) {
 mkdir($dir, 0777);
 }
 }
+/**
+* 创建文件（默认为空）
+* @param unknown_type $filename
+*/
+static public function createFile($filename) {
+if (!is_file($filename)) touch($filename);
+}
 
 
 
