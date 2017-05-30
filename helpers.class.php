@@ -697,6 +697,20 @@ mkdir($dir, 0777);
 static public function createFile($filename) {
 if (!is_file($filename)) touch($filename);
 }
+/**
+* 正确获取变量
+* @param string $param
+* @param string $type
+* @return string
+*/
+static public function getData($param, $type='post') {
+$type = strtolower($type);
+if ($type=='post') {
+return self::mysqlString(trim($_POST[$param]));
+} elseif ($type=='get') {
+return self::mysqlString(trim($_GET[$param]));
+}
+}
 
 
 
