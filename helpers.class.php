@@ -711,6 +711,13 @@ return self::mysqlString(trim($_POST[$param]));
 return self::mysqlString(trim($_GET[$param]));
 }
 }
+/**
+* 删除文件
+* @param string $filename
+*/
+static public function delFile($filename) {
+if (file_exists($filename)) unlink($filename);
+}
 
 
 
