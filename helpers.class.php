@@ -733,6 +733,16 @@ $str = str_replace($v, '', $str);
 return $str;
 }
 
+/**
+* 格式化时间
+* @param int $time 时间戳
+* @return string
+*/
+static public function formatDate($time='default') {
+$date = $time == 'default' ? date('Y-m-d H:i:s', time()) : date('Y-m-d H:i:s', $time);
+return $date;
+}
+
 
 
 
