@@ -720,6 +720,20 @@ if (file_exists($filename)) unlink($filename);
 }
 
 
+/**
+* 格式化字符串
+* @param string $str
+* @return string
+*/
+static public function formatStr($str) {
+$arr = array(' ', ' ', '&', '@', '#', '%',  '\'', '"', '\\', '/', '.', ',', '$', '^', '*', '(', ')', '[', ']', '{', '}', '|', '~', '`', '?', '!', ';', ':', '-', '_', '+', '=');
+foreach ($arr as $v) {
+$str = str_replace($v, '', $str);
+}
+return $str;
+}
+
+
 
 
 
