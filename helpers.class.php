@@ -742,7 +742,27 @@ static public function formatDate($time='default') {
 $date = $time == 'default' ? date('Y-m-d H:i:s', time()) : date('Y-m-d H:i:s', $time);
 return $date;
 }
-
+/**
+* 正确获取变量
+* @param string $param
+* @param string $type
+* @return string
+*/
+static public function getData($param, $type='post') {
+$type = strtolower($type);
+if ($type=='post') {
+return self::mysqlString(trim($_POST[$param]));
+} elseif ($type=='get') {
+return self::mysqlString(trim($_GET[$param]));
+}
+}
+/**
+* 删除文件
+* @param string $filename
+*/
+static public function delFile($filename) {
+if (file_exists($filename)) unlink($filename);
+}
 
 
 
