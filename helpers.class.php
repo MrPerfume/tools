@@ -764,6 +764,14 @@ static public function delFile($filename) {
 if (file_exists($filename)) unlink($filename);
 }
 
+/**
+* 删除目录
+* @param string $path
+*/
+static public function delDir($path) {
+if (is_dir($path)) rmdir($path);
+}
+
 
 
 
